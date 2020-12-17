@@ -1,0 +1,51 @@
+body {
+  background-color: #f7fbfc;
+  color: #212121;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.material-icons {
+  vertical-align: bottom;
+}
+
+.drop-space {
+  display: inline-block;
+  min-height: 10em;
+  width: 100%;
+  background-color: #d6e6f2;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.drop-space * {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.browse-btn {
+  display: inline-block;
+  background-color: #769fcd;
+  color: #f7fbfc;
+  padding: 0.1rem 0.5rem;
+  border-radius: 1rem;
+}
+.browse-btn:hover {
+  filter: brightness(90%);
+}
+
+.result-list {
+  width: 100%;
+}
+.ctrl {
+  text-align: center;
+}
+.result-list tr:nth-of-type(2n) {
+  background-color: #b9d7ea;
+}
+.result-list tr:nth-of-type(2n+1) {
+  background-color: #769fcd;
+  color: #f7fbfc;
+}
