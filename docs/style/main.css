@@ -7,6 +7,10 @@ input[type="file"] {
   display: none;
 }
 
+p {
+  margin: 0;
+}
+
 .material-icons {
   vertical-align: bottom;
 }
