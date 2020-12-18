@@ -2,22 +2,31 @@ const add_new_file = async file => {
   const resultList = document.querySelector('#resultList');
   const item = create_new_item(file);
   const tr = item.querySelector('tr');
-  resultList.appendChild(item)
-  tr.querySelector('.download-a').href = await unlock(file);
-  tr.querySelector('.download-btn').disabled = false;
+  const nameEl = tr.querySelector('.result-name');
+  const linkEl = tr.querySelector('.download-a');
+  const dlBtn = tr.querySelector('.download-btn');
+  resultList.appendChild(item);
+  try {
+    linkEl.href = await unlock(file);
+    dlBtn.disabled = false;
+  } catch(e) {
+    nameEl.textContent += `(${e})`;
+    dlBtn.querySelector('span.material-icons').textContent = 'report_problem';
+  }
 }
 
 const create_new_item = file => {
   const template = document.querySelector('#productItem');
   const item = template.content.cloneNode(true);
-  const resultName = item.querySelector('.result-name');
-  resultName.textContent = file.name;
-  const downloadAnker = item.querySelector('.download-a');
-  downloadAnker.download = file.name;
-  const closeBtn = item.querySelector('.close-btn');
+  const tr = item.querySelector('tr');
+  const nameEl = tr.querySelector('.result-name');
+  const linkEl = tr.querySelector('.download-a');
+  const closeBtn = tr.querySelector('.close-btn');
+  nameEl.textContent = file.name;
+  linkEl.download = file.name;
   closeBtn.addEventListener('click', e => {
     const item = e.currentTarget.closest('.result-item');
-    const downloadAnker = item.querySelector('.download-a');
+    const downloadAnker = tr.querySelector('.download-a');
     URL.revokeObjectURL(downloadAnker.href);
     item.remove();
   });
@@ -36,18 +45,22 @@ const unlock = async file => {
     }
   };
   const target = rule[file.type];
-  if (!target) throw 'error';
+  if (!target) throw 'FileType Error';
   const zip = await JSZip.loadAsync(file);
   for (const [path, tags] of Object.entries(target)) {
     const xmlSrc = await zip.file(path).async('string');
     const parser = new DOMParser();
     const doc = parser.parseFromString(xmlSrc, 'application/xml');
-    for (const tag of tags) for (const elm of doc.getElementsByTagName(tag)) elm.remove();
+    for (const tag of tags)
+      for (const elm of doc.getElementsByTagName(tag)) elm.remove();
     const serializer = new XMLSerializer();
     const xmlStr = serializer.serializeToString(doc);
     zip.file(path, xmlStr);
   }
-  const blob = await zip.generateAsync({type: 'blob', mimeType: file.type});
+  const blob = await zip.generateAsync({
+    type: 'blob',
+    mimeType: file.type
+  });
   const url = URL.createObjectURL(blob);
   return url;
 }
@@ -58,5 +71,5 @@ document.querySelector("#inputFiles").addEventListener('change', e => {
   for (const file of files) {
     add_new_file(file);
   }
-  e.currentTarget.value='';
+  e.currentTarget.value = '';
 });
