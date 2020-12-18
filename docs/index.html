@@ -11,16 +11,16 @@
   <meta property="og:type" content="article">
   <meta property="og:title" content="deepl unlocker">
   <meta property="og:description" content="deepl.comで翻訳したdocx/pptxのロックを解除するWebアプリ">
-  <meta property="og:image" content="https://kairi003.github.io/deepl_unlocker/img/unlock-padlock.png">
+  <meta property="og:image" content="https://kairi003.github.io/deepl_unlocker/img/logo.png">
 
   <title>deepl unlocker</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="style/main.css">
-  <link rel="icon" href="img/unlock-padlock.png" type="image/png">
+  <link rel="icon" href="img/favicon.png" type="image/png">
 </head>
 
 <body>
-  <div>
+  <header>
     <h1>deepl unlocker</h1>
     <p>
       deepl.comで翻訳したdocx/pptxのロックを解除するWebアプリ
@@ -28,47 +28,48 @@
     <p>
       Author: <a href="https://twitter.com/kairi_005">@kairi_005</a>
     </p>
-  </div>
-  <div id="dropSpace" class="drop-space">
-    <b>Drag and Drop Here</b>
-    <p>or</p>
-    <label for="inputFiles">
-      <b class="browse-btn">Browse File</b>
-    </label>
-    <input id="inputFiles" class="input-files" type="file"
-      accept=".pptx,.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation"
-      multiple>
-  </div>
+  </header>
 
+  <main>
+    <div id="dropSpace" class="drop-space">
+      <b>Drag and Drop Here</b>
+      <p>or</p>
+      <label for="inputFiles">
+        <b class="browse-btn">Browse File</b>
+      </label>
+      <input id="inputFiles" class="input-files" type="file"
+        accept=".pptx,.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation"
+        multiple>
+    </div>
+    <table id="resultList" class="result-list">
+    </table>
+    <template id="productItem">
+      <tr class="result-item">
+        <td class="result-name"></td>
+        <td class="result-ctrl">
+          <a class="download-a ctrl" href download>
+            <button class="download-btn" disabled>
+              <span class="material-icons">
+                get_app
+              </span>
+            </button>
+          </a>
+        </td>
+        <td class="result-ctrl">
+          <button class="close-btn">
+            <span class="material-icons">
+              clear
+            </span>
+          </button>
+        </td>
+      </tr>
+    </template>
+  </main>
 
-  <table id="resultList" class="result-list">
-  </table>
   <footer>
     <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a
         href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
   </footer>
-
-  <template id="productItem">
-    <tr class="result-item">
-      <td class="result-name"></td>
-      <td class="result-ctrl">
-        <a class="download-a ctrl" href download>
-          <button class="download-btn" disabled>
-            <span class="material-icons">
-              get_app
-            </span>
-          </button>
-        </a>
-      </td>
-      <td class="result-ctrl">
-        <button class="close-btn">
-          <span class="material-icons">
-            clear
-          </span>
-        </button>
-      </td>
-    </tr>
-  </template>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.5.0/jszip.min.js"></script>
   <script src="script/main.js"></script>
