@@ -1,6 +1,19 @@
+html {
+  background: gainsboro;
+}
+
 body {
   background-color: #f7fbfc;
   color: #212121;
+  margin: auto;
+  max-width: 75rem;
+  padding: 1px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+header, main, footer {
+  margin: 1.5rem;
 }
 
 input[type="file"] {

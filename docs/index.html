@@ -23,23 +23,25 @@
   <header>
     <h1>deepl unlocker</h1>
     <p>
-      deepl.comで翻訳したdocx/pptxのロックを解除するWebアプリ
+      deepl.comで翻訳したdocx/pptxのロックを解除するWebサービス
     </p>
   </header>
 
   <main>
-    <div id="dropSpace" class="drop-space">
-      <b>Drag and Drop Here</b>
-      <p>or</p>
-      <label for="inputFiles">
+    <label for="inputFiles">
+      <div id="dropSpace" class="drop-space">
+        <b>Drag and Drop Here</b>
+        <p>or</p>
         <b class="browse-btn">Browse File</b>
-      </label>
-      <input id="inputFiles" class="input-files" type="file"
-        accept=".pptx,.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation"
-        multiple>
-    </div>
+        <input id="inputFiles" class="input-files" type="file"
+          accept=".pptx,.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          multiple>
+      </div>
+    </label>
+
     <table id="resultList" class="result-list">
     </table>
+
     <template id="productItem">
       <tr class="result-item">
         <td class="result-name"></td>
@@ -68,7 +70,7 @@
       Author: <a href="https://twitter.com/kairi_005">@kairi_005</a>
     </p>
     <p>
-      Repository: <a href="https://github.com/kairi003/deepl_unlocker">kairi003/deepl_unlocker</a>
+      GitHub: <a href="https://github.com/kairi003/deepl_unlocker">kairi003/deepl_unlocker</a>
     </p>
   </footer>
 
