@@ -65,11 +65,34 @@ const unlock = async file => {
   return url;
 }
 
+const inputFiles = document.querySelector("#inputFiles");
+const dropSpace = document.querySelector('#dropSpace');
 
-document.querySelector("#inputFiles").addEventListener('change', e => {
+inputFiles.addEventListener('change', e => {
   const files = e.currentTarget.files;
   for (const file of files) {
     add_new_file(file);
   }
-  e.currentTarget.value = '';
+  inputFiles.value = '';
 });
+
+dropSpace.addEventListener('dragover', e=>{
+  e.stopPropagation();
+  e.preventDefault();
+  dropSpace.classList.add('dragover');
+}, false);
+
+dropSpace.addEventListener('dragleave', e=>{
+  e.stopPropagation();
+  e.preventDefault();
+  dropSpace.classList.remove('dragover');
+}, false);
+
+dropSpace.addEventListener('drop', e=>{
+  e.stopPropagation();
+  e.preventDefault();
+  dropSpace.classList.remove('dragover');
+  for (const file of e.dataTransfer.files) {
+    add_new_file(file);
+  }
+}, false);

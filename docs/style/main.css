@@ -35,6 +35,12 @@ p {
   background-color: #d6e6f2;
   text-align: center;
   padding: 0.5rem 0;
+  box-sizing: border-box;
+}
+
+.drop-space.dragover{
+  border: 5px #212121 solid;
+  padding: calc(0.5rem - 5px) 0;
 }
 
 .drop-space * {
